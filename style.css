@@ -1,0 +1,2295 @@
+/* =======================================================
+   1. BASE STYLES & RESET
+   ======================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff;
+    color: #111111;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    padding: 30px 20px 80px 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* =======================================================
+   2. CLOCK HEADER
+   ======================================================= */
+.clock-display {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #666666;
+    letter-spacing: 0.5px;
+    margin-bottom: 50px;
+    font-weight: 500;
+}
+
+/* =======================================================
+   EXACT MATCH HERO LAYOUT & TYPOGRAPHY
+   ======================================================= */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    margin-top: 20px;
+    margin-bottom: 90px;
+}
+
+.hero-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 3.4rem;
+    font-weight: 700;
+    letter-spacing: -1.8px;
+    color: #111111;
+    margin-bottom: 2px;
+    line-height: 1.1;
+}
+
+.subtitle {
+    font-size: 2.1rem;
+    color: #222222;
+    margin-bottom: 14px;
+    font-weight: 400;
+    height: 54px; /* Increased height to fit 2.1rem text */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.flip-container {
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    width: 450px; /* Wide enough so 'Software Engineer.' stays on one line */
+}
+
+.flip-container .word {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-weight: 500;
+    color: #000000;
+    opacity: 0;
+    transform: translateY(25px); /* Increased travel distance for larger font */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.flip-container .word.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.flip-container .word.exit {
+    opacity: 0;
+    transform: translateY(-25px);
+}
+
+/* Social Icons Row */
+.social-links {
+    display: flex;
+    gap: 18px; /* Increased spacing to match larger icon scale */
+    margin-bottom: 14px;
+    align-items: center;
+}
+
+.social-links a {
+    color: #999999;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s ease;
+}
+
+.social-links a:hover {
+    color: #111111;
+}
+
+.location-coords {
+    font-size: 0.8rem;
+    color: #494949;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    margin-top: 16px; /* Adds clear separation between icons and coordinates */
+}
+
+/* Exact Image Card Proportions */
+.hero-image-wrapper {
+    flex: 0 0 360px;
+}
+
+.hero-img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+}
+/* =======================================================
+   UPDATES SECTION STYLING (Reference Matched)
+   ======================================================= */
+.updates-section {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 60px;
+    padding-bottom: 80px;
+    font-family: inherit;
+}
+
+.updates-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: #716d6d;
+    width: 140px;
+    text-transform: uppercase;
+}
+
+.updates-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 32px; /* Clean vertical spacing between entries */
+}
+
+.update-item {
+    display: flex;
+    align-items: flex-start;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s ease;
+}
+
+.update-item:not(.static-update):hover {
+    opacity: 0.75;
+}
+
+.update-date {
+    width: 110px;
+    font-size: 0.95rem;
+    color: #555555;
+    font-weight: 400;
+}
+
+.update-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.update-content p {
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Rounded Outline Tag Pill */
+.update-tag {
+    align-self: flex-start;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    color: #0070f3; /* Clean bright blue */
+    border: 1px solid #b3d7ff; /* Light blue border */
+    background-color: #f0f7ff; /* Very faint light blue fill */
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+}
+/* =======================================================
+   6. ANIMATIONS
+   ======================================================= */
+.fade-in {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Clickable Timeline Row Styling */
+a.timeline-item {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    cursor: pointer;
+}
+
+/* =======================================================
+   SIDEBAR NAVIGATION (5-Item Layout Adjustments)
+   ======================================================= */
+.side-nav {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 32px; /* Adjusted gap to balance out 5 items perfectly */
+    z-index: 100;
+}
+
+/* Vertical separating line positioned to the right of the icons */
+.side-nav::after {
+    content: '';
+    position: absolute;
+    left: 40px; 
+    top: -100px;
+    bottom: -100px;
+    width: 1px;
+    background-color: #e5e5e5;
+}
+
+.side-nav a {
+    color: #999999;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.side-nav a:hover {
+    color: #111111;
+}
+
+/* =======================================================
+   SIDEBAR TOOLTIPS (Appearing right beside the icon)
+   ======================================================= */
+.side-nav a {
+    position: relative;
+}
+
+.side-nav a::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 42px; /* Sits right next to the 25px icon */
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+    color: #222222;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eaeaea;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+    pointer-events: none;
+    z-index: 101;
+}
+
+/* Make it appear instantly on hover */
+.side-nav a:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+body {
+    padding-left: 90px;
+}
+/* =======================================================
+   SITE FOOTER
+   ======================================================= */
+.site-footer {
+    text-align: center;
+    margin-top: 100px;
+    padding-bottom: 40px;
+    font-size: 0.9rem;
+    color: #666666;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+}
+
+/* =======================================================
+   SCOPED STYLING FOR WORK PAGE ONLY (Does not affect Home)
+   ======================================================= */
+/* =======================================================
+   EXACT VIEWPORT-CENTERED TOP CLOCK
+   ======================================================= */
+.work-page {
+    position: relative;
+    min-height: 100vh;
+}
+
+#live-clock {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    color: #777777;
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+    z-index: 50;
+    white-space: nowrap;
+}
+
+/* Reset work container top padding so content flows naturally below the absolute clock */
+.work-container {
+    width: 100%;
+    max-width: 580px;
+    padding: 10px 20px 80px 20px; /* Generous top padding so content starts cleanly under the clock */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.work-hero-image {
+    width: 100%;
+    max-width: 300px;
+    height: 380px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-left: auto;      /* Forces block centering */
+    margin-right: auto;     /* Forces block centering */
+    margin-bottom: 28px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.work-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+/* Header Text */
+.work-header {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 36px;
+}
+
+.work-header h1 {
+    font-size: 1.60rem;
+    font-weight: 400;
+    color: #1d1d1d;
+    letter-spacing: -0.4px;
+    margin: 0 0 6px 0;
+}
+
+.work-subtitle {
+    font-size: 1.1rem;
+    color: #666666;
+    font-weight: 400;
+    margin: 0;
+}
+
+/* Name and Role Title */
+.work-profile-info {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.work-profile-info h2 {
+    font-size: 1.50rem;
+    font-weight: 500;
+    color: #272626;
+    letter-spacing: -0.2px;
+    margin: 0 0 6px 0;
+}
+
+.role-title {
+    font-size: 1.3rem;
+    color: #272626;
+    font-weight: 400;
+    margin: 0;
+}
+
+/* Action Buttons */
+.work-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 24px;
+    background-color: #f7f7f8;
+    border: 1px solid #e2e2e5;
+    border-radius: 50px;
+    color: #1f1f1f;
+    font-size: 0.92rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.action-btn:hover {
+    background-color: #f0f0f2;
+    border-color: #d0d0d5;
+}
+
+.action-btn svg {
+    color: #666666;
+}
+
+/* =======================================================
+   EXACT OMAR-STYLE BIO ALIGNMENT
+   ======================================================= */
+.work-bio-section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 650px; /* Matches your main .work-container max-width so it locks into the exact same left alignment */
+    margin: -40px auto 80px auto;
+    text-align: left;
+    gap: 20px; /* Exact gap between the BIO label and paragraphs */
+}
+
+.bio-label, 
+.section-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: #111111;
+    width: 50px; /* Gives 'EXPERIENCE' plenty of room to stretch to the left */
+    flex-shrink: 0;
+    padding-top: 2.7px;
+    text-transform: uppercase;
+    text-align: right; /* This pins the 'O' and 'E' perfectly on the same vertical line */
+}
+
+.bio-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.bio-content p {
+    font-size: 1.05 rem;
+    line-height: 1.6;
+    color: #070707;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.bio-content a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.bio-content a:hover {
+    text-decoration: underline;
+}
+
+/* =======================================================
+   8. EXPERIENCE & PROJECTS SECTIONS
+   ======================================================= */
+
+/* Shared Layout Wrapper for all bottom sections */
+.work-bio-section, /* Targets your existing bio wrapper */
+.work-section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 80%;
+    max-width: 700px; 
+    margin: 0 auto 80px auto;
+    text-align: left;
+    gap: 20px;
+}
+
+/* Shared Left-Side Label */
+.section-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: #111111;
+    width: 100px; /* Ensures longer words like 'EXPERIENCE' fit without breaking alignment */
+    flex-shrink: 0;
+    padding-top: 2.7px;
+    text-transform: uppercase;
+}
+
+.section-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* --- Experience Styling --- */
+.experience-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.job-primary {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.company-logo {
+    width: 140px;
+    height: 70px;
+    flex-shrink: 0;
+    background-color: #f0f0f2;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.job-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.job-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #070707;
+    margin: 0;
+}
+
+.company-name, 
+.job-dates {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.9rem;
+    color: #666666;
+    margin: 0;
+}
+
+.job-dates {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    padding-top: 2px;
+    white-space: nowrap;
+    margin-left: 16px;
+}
+
+/* --- Projects Portfolio (Visual Cards) --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Add a bit of breathing room to stacked labels */
+.section-label {
+    line-height: 1.5;
+}
+
+.project-card-visual {
+    background-color: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-height: 280px; /* Gives the card that tall, spacious feel */
+}
+
+.project-card-visual:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.project-top-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px; /* Pushes the graphic down towards the center */
+}
+
+.project-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.project-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #111111;
+    margin: 0;
+}
+
+.project-graphic {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Styles for when you eventually add an <img> tag for the screenshot */
+.project-graphic img {
+    max-width: 100%;
+    max-height: 180px;
+    object-fit: contain;
+}
+
+/* =======================================================
+   9. SKILLS SECTION
+   ======================================================= */
+.skills-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.skill-category {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.skill-category h3 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Recreating the pale blue rounded tags */
+.skill-tag {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.9rem;
+    color: #333333;
+    background-color: #f7fbff; /* Very pale blue background */
+    border: 1px solid #cde0ff; /* Light blue outline */
+    padding: 6px 14px;
+    border-radius: 8px; /* Softly rounded corners */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.skill-tag:hover {
+    background-color: #ebf4ff;
+}
+
+/* The tiny badge for Language levels/regions */
+.lang-badge {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #4a5568;
+    background-color: #e2e8f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+}
+
+.edu-logo {
+    width: 65px; /* Big enough to match the text height */
+    height: 65px;
+    background-color: transparent !important; /* Removes the gray box completely */
+    padding: 0 !important; /* Removes any spacing squeezing the logo */
+    border-radius: 0;
+}
+
+.edu-logo img {
+    width: 200%;
+    height: 170%;
+    object-fit: contain; /* Ensures the logo stretches to fill the whole 65px space */
+    background-color: transparent;
+}
+
+/* =======================================================
+   10. CONTACT SECTION
+   ======================================================= */
+.contact-actions {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+.contact-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: #ffffff;
+    border: 1px solid #eaeaea;
+    border-radius: 50px;
+    color: #111111;
+    font-size: 0.95rem;
+    font-weight: 400;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.contact-btn:hover {
+    background-color: #f9f9f9;
+    border-color: #dcdcdc;
+}
+
+.contact-btn svg {
+    color: #666666;
+}
+
+/* Divider with 'or' in the middle */
+.contact-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #888888;
+    font-size: 0.9rem;
+    margin: 10px 0;
+}
+
+.contact-divider::before,
+.contact-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.contact-divider span {
+    padding: 0 16px;
+}
+
+/* Email Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 16px;
+    background-color: #f5f5f5;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #111111;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #666666;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #cccccc;
+    background-color: #f0f0f0;
+}
+
+.contact-form textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 16px;
+    background-color: #f5f5f5;
+    color: #111111;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: #ebebeb;
+}
+
+/* =======================================================
+   12. FIXED LEFT ICON BAR (Corrected Layout Overlay)
+   ======================================================= */
+
+/* Top Center Clock */
+.top-clock {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 15px;
+    font-size: 0.85rem;
+    color: #888888;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    z-index: 100;
+}
+
+/* Floating Left Icon Bar */
+.left-icon-bar {
+    position: fixed;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 1000;
+    background: #ffffff;
+    padding: 6px;
+    border-radius: 10px;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.icon-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777777;
+    border-radius: 6px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.icon-btn:hover {
+    background-color: #f5f5f5;
+    color: #111111;
+}
+
+.icon-btn.active-icon {
+    color: #111111;
+    background-color: #f0f0f0;
+}
+
+/* =======================================================
+   11. ABOUT PAGE STYLES
+   ======================================================= */
+
+.about-page .work-container {
+    max-width: 800px !important; 
+}
+
+.about-page .work-header {
+    text-align: left !important;
+    margin: -20px 0 30px 160px !important; 
+    padding: 0 !important;
+}
+
+/* Master Layout for the Intro Row */
+.about-section {
+    display: flex !important;
+    gap: 35px !important; /* Uniform gap for all rows */
+    margin-top: 0px !important; 
+    margin-bottom: 60px !important;
+    align-items: flex-start !important;
+}
+
+/* 🌟 THE MAGIC RIGHT-ALIGN FOR THE INTRO LABEL */
+.about-section .section-label {
+    width: 130px !important; /* Exact same width for all labels */
+    flex-shrink: 0 !important;
+    font-size: 0.85rem !important;
+    color: #3c3c3c !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    text-align: right !important; /* Makes it end at the same point! */
+    margin-top: 5px !important; 
+}
+
+.about-section .section-content {
+    flex-grow: 1 !important;
+    width: 100% !important;
+    max-width: 700px !important;
+}
+
+/* Cleaned up Image (no more negative margins) */
+.about-hero-img {
+    display: block !important;
+    margin: 0 0 15px 0 !important; 
+    width: 100% !important;
+    aspect-ratio: 15 / 10 !important; 
+    object-fit: cover !important; 
+    object-position: center bottom !important; 
+    border-radius: 12px !important;
+}
+
+/* Cleaned up Text (no more negative margins) */
+.about-text {
+    width: 100% !important; 
+    margin-left: 0 !important; 
+    max-width: 100% !important; 
+}
+
+.about-text a {
+    color: #2b74c9 !important; 
+    text-decoration: none !important; 
+}
+
+.about-text a:hover {
+    text-decoration: underline !important;
+}
+
+.about-text p {
+    text-align: justify !important; 
+    font-size: 1.05rem !important;
+    line-height: 1.3 !important;
+    color: #333333 !important;
+    margin-bottom: 15px !important;
+}
+
+.about-text p:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* =======================================================
+   12. PILL TAGS STYLES (HOBBIES, YES, NO)
+   ======================================================= */
+
+/* Master Layout for Tag Rows */
+.about-section.align-tags {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    gap: 35px !important; /* Matches the 35px gap of the intro row */
+    margin-bottom: 40px !important;
+}
+
+/* 🌟 THE MAGIC RIGHT-ALIGN FOR HOBBIES, YES, NO */
+.align-tags .section-label {
+    width: 130px !important; /* Exact same width */
+    flex-shrink: 0 !important;
+    text-align: right !important; /* Makes it end at the same point! */
+    margin-top: 8px !important; 
+}
+
+/* Cleaned up Tags Container (no more negative margins) */
+.align-tags .tags-container {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    width: 100% !important; 
+    max-width: 850px !important; 
+    margin-left: 0 !important; 
+}
+
+.tag-pill {
+    padding: 8px 21px !important;
+    border-radius: 20px !important;
+    font-size: 0.95rem !important;
+    color: #333333 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important; 
+    background-color: #ffffff !important; 
+    margin: 0 !important;
+    white-space: nowrap !important;
+}
+
+.tag-green {
+    background-color: #f2fcf5 !important;
+    border: 1px solid #bcf0cc !important;
+}
+
+.tag-red {
+    background-color: #fff5f2 !important;
+    border: 1px solid #ffd4c4 !important;
+}
+
+.tag-blue {
+    background-color: #f4f9ff !important;
+    border: 1px solid #c2defc !important;
+}
+
+/* =======================================================
+   13. BRAND NEW COUNTRIES & EDC STYLES
+   ======================================================= */
+
+/* Master Layout for Countries Row */
+.countries-row {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 35px !important; /* Matches the 35px gap */
+    margin-bottom: 40px !important;
+}
+
+/* 🌟 THE MAGIC RIGHT-ALIGN FOR COUNTRIES VISITED */
+.countries-row .section-label {
+    width: 130px !important; /* Exact same width */
+    flex-shrink: 0 !important;
+    text-transform: uppercase !important;
+    font-size: 0.85rem !important;
+    color: #333333 !important;
+    letter-spacing: 1.5px !important;
+    line-height: 1.4 !important;
+    text-align: right !important; /* Makes it end at the same point! */
+    margin-top: 8px !important;
+}
+
+.countries-container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+    width: 100% !important;
+    max-width: 900px !important;
+}
+
+.tag-country {
+    background-color: #ffffff !important;
+    border: 1px solid #c2defc !important;
+    padding: 8px 16px !important;
+    border-radius: 20px !important;
+    font-size: 0.95rem !important;
+    color: #333333 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    white-space: nowrap !important;
+}
+
+.country-code {
+    font-size: 0.75rem !important;
+    color: #666666 !important;
+    font-weight: 500 !important;
+}
+
+/* Master Layout for EDC Row */
+.edc-row {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 35px !important; /* Matches the 35px gap */
+    margin-bottom: 60px !important;
+}
+
+/* 🌟 THE MAGIC RIGHT-ALIGN FOR EDC */
+.edc-row .section-label {
+    width: 50px !important; /* Exact same width */
+    flex-shrink: 0 !important;
+    text-transform: uppercase !important;
+    font-size: 0.85rem !important;
+    color: #333333 !important;
+    letter-spacing: 1.5px !important;
+    text-align: right !important; /* Makes it end at the same point! */
+    margin-top: 2.5px !important;
+}
+
+.edc-main-container {
+    width: 100% !important;
+    max-width: 850px !important;
+}
+
+.edc-title {
+    font-size: 1.2rem !important;
+    font-weight: 500 !important;
+    color: #333333 !important;
+    margin-bottom: -10px !important;
+    text-align: left !important;
+}
+
+.edc-cards-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 15px !important;
+    justify-content: flex-start !important;
+}
+
+.edc-card-item {
+    background-color: #f7f7f7 !important;
+    border-radius: 12px !important;
+    padding: 10px 5px !important;
+    width: 160px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    text-align: center !important;
+}
+
+.edc-card-item img {
+    max-width: 100% !important;
+    height: 110px !important;
+    object-fit: contain !important;
+    margin-bottom: 15px !important;
+}
+
+.edc-card-item p {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+    color: #555555 !important;
+    margin: 0 !important;
+    text-align: center !important;
+}
+
+.contact-section {
+  display: flex;
+  gap: 3rem;
+  max-width: 800px;
+  font-family: sans-serif;
+}
+
+.contact-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #333;
+
+  width: 120px; /* Keeps the label neatly on the left */
+}
+
+.contact-content {
+  flex: 1;
+}
+
+/* Pill Buttons */
+.button-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.pill-btn {
+  flex: 1;
+  text-align: center;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid #eaeaea;
+  border-radius: 50px;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+.pill-btn:hover {
+  border-color: #ccc;
+}
+
+/* "Or" Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #999;
+  margin: 2rem 0;
+  font-size: 0.9rem;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.divider span {
+  padding: 0 1rem;
+}
+
+/* Form Styles */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #333;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #666;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.send-btn {
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.send-btn:hover {
+  background-color: #e8e8e8;
+}
+
+/* =======================================================
+   14. READS PAGE STYLES
+   ======================================================= */
+
+/* Container widened to make the image massive */
+.reads-container {
+    width: 100%;
+    max-width: 950px; /* Increased from 800px to match Omar's scale */
+    margin: 0 auto;
+    padding: 20px 20px 60px 20px;
+}
+
+/* Live Time Styling (Top Center) */
+.top-time-container {
+    text-align: center;
+    padding: 0 0 40px 0;
+    font-size: 0.85rem;
+    color: #666666;
+    letter-spacing: 1px;
+}
+
+/* Header Text Alignments */
+.reads-header {
+    margin-bottom: 0px;
+    text-align: left;
+}
+
+.reads-header h1 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #333333;
+    margin: 0 0 4px 0;
+}
+
+.reads-header p {
+    font-size: 1.05rem;
+    color: #555555;
+    margin: 0;
+}
+
+/* The Massive Hero Image */
+.reads-hero-img {
+    width: 150%;
+    max-height: 600px; /* Prevents it from getting too tall on giant monitors */
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    margin-bottom: 30px; /* Space between image and quote */
+}
+
+/* The Quote Section */
+.reads-quote {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.reads-quote h2 {
+    font-size: 1.5rem;
+    font-weight: 200; /* Gives the quote that thin, elegant look */
+    color: #444444;
+    margin: 0 0 12px 0;
+}
+
+.reads-quote p {
+    font-size: 1.3rem;
+    color: #777777;
+    margin: 0;
+}
+
+/* =======================================================
+   GOODREADS LOGO STYLING
+   ======================================================= */
+
+.goodreads-link-wrapper {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+/* Makes the whole line clickable and aligns the text bottoms perfectly */
+.goodreads-link {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px; /* Space between 'on' and 'goodreads' */
+    transition: opacity 0.2s ease;
+}
+
+.goodreads-link:hover {
+    opacity: 0.7; /* Gentle fade effect when hovered */
+}
+
+/* "Find me on" - Ultra thin and dark grey */
+.find-text {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 100; /* Forces the ultra-thin look */
+    font-size: 1.3rem;
+    color: #4a4a4a; 
+}
+
+/* Wrapper for the logo part to make it larger */
+.gr-logo {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 2.2rem; /* Noticeably larger than the intro text */
+    letter-spacing: -1px; /* Pulls the letters tighter together */
+}
+
+/* "good" - Thin font, light brown */
+.good-part {
+    font-weight: 50;
+    color: #9d8b70; 
+}
+
+/* "reads" - Bolder font, dark brown */
+.reads-part {
+    font-weight: 500;
+    color: #584628; 
+}
+
+/* =======================================================
+   ALL-TIME FAVORITES 3D BOOKS
+   ======================================================= */
+
+.favorites-section {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.favorites-title {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 100;
+    color: #333333;
+    margin-bottom: -40px;
+}
+
+/* The Shelf Container */
+.books-shelf {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+    padding: 50px 0; /* Increased padding so the bigger books don't get cut off when they pop out! */
+}
+
+/* Individual Book Wrapper - MADE BIGGER */
+.book-wrapper {
+    width: 180px;  /* Increased from 140px */
+    height: 275px; /* Increased from 215px */
+    position: relative;
+    margin: 0 -35px; /* Increased the negative margin slightly so they still overlap nicely */
+    z-index: 1; 
+    cursor: pointer;
+}
+
+/* 🌟 When hovered, force this book to jump to the very front 🌟 */
+.book-wrapper:hover {
+    z-index: 10;
+}
+
+/* The actual 3D object inside the wrapper */
+.book-3d {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateY(35deg); /* Default state: rotated to show the spine */
+    transition: transform 0.4s ease; /* Smooth animation speed */
+    box-shadow: -5px 10px 15px rgba(0,0,0,0.15);
+}
+
+/* 🌟 When hovered, flatten the book and scale it up slightly 🌟 */
+.book-wrapper:hover .book-3d {
+    transform: rotateY(0deg) scale(1.15);
+    box-shadow: 0px 15px 25px rgba(0,0,0,0.25);
+}
+
+/* Front Cover Styling */
+.book-cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    transform: translateZ(0);
+    border-radius: 2px 4px 4px 2px;
+}
+
+
+/* =======================================================
+   THINKERS SECTION STYLING (BULLETPROOF CENTER)
+   ======================================================= */
+
+.thinkers-wrapper {
+    margin-top: -5px !important;
+    margin-bottom: 80px !important;
+    width: 100% !important;
+    display: block !important; 
+}
+
+.thinkers-section {
+    margin-bottom: 30px !important;
+    width: 100% !important;
+    text-align: center !important; /* Centers the heading and the tags */
+}
+
+/* The Headings */
+.thinkers-title {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 1.3rem !important;
+    font-weight: 400 !important;
+    color: #333333 !important;
+    margin-bottom: 20px !important;
+    margin-top: 0 !important;
+    text-align: center !important;
+}
+
+/* 
+  Removed flexbox completely! 
+  Now it acts like a normal text block, forcing absolute centering.
+*/
+.tags-center-container {
+    display: block !important;
+    text-align: center !important;
+    width: 1050px !important; /* Forces it wide enough for 5 items */
+    max-width: 90vw !important; /* Prevents horizontal scrolling on smaller screens */
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important; /* The magic trick that perfectly centers it regardless of width */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 
+  Since we aren't using flexbox 'gap' anymore, 
+  we give the pills physical margins so they don't touch each other.
+*/
+.tags-center-container .tag-pill {
+    margin: 4px 6px !important; 
+    padding: 7px 10px !important; /* Slightly thinner padding to save space */
+    font-size: 0.95rem !important;
+    display: inline-flex !important;
+    vertical-align: middle !important;
+}
+
+.hobbies-container {
+    width: 100%;
+    max-width: 950px; /* Increased from 800px to match Omar's scale */
+    margin: 0 auto;
+    padding: 20px 20px 60px 20px;
+}
+
+/* Live Time Styling (Top Center) */
+.top-time-container {
+    text-align: center;
+    padding: 0 0 40px 0;
+    font-size: 0.85rem;
+    color: #666666;
+    letter-spacing: 1px;
+}
+
+/* Header Text Alignments */
+.hobbies-header {
+    margin-bottom: 0px;
+    text-align: left;
+}
+
+.hobbies-header h1 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #333333;
+    margin: 0 0 4px 0;
+}
+
+.hobbies-header p {
+    font-size: 1.05rem;
+    color: #555555;
+    margin: 0;
+}
+
+/* The Massive Hero Image */
+.hobbies-hero-img {
+    width: 100vw !important; /* Forces it to stretch based on screen size */
+    max-width: 700px !important; /* Stretches wider than your text */
+    height: auto !important; /* Automatically adjusts height so NOTHING gets cropped! */
+    border-radius: 12px !important;
+    display: block !important;
+    
+    /* The magic trick to break out of the container and stay perfectly centered */
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-40%) !important;
+    
+    margin-top: -13px !important;
+    margin-bottom: 20px !important;}
+
+/* =======================================================
+   1. IMPOSSIBLE LIST: INTRO TEXT 
+   ======================================================= */
+.impossible-intro {
+    margin-bottom: 40px;
+    text-align: left; /* Keeps the text aligned to the left for easy reading */
+    
+    /* The breakout trick to make it wider than the 750px image */
+    width: 100vw;
+    max-width: 700px; /* Stretches 100px past the image on both the left and right */
+    
+    /* Keeps the whole text block perfectly centered on the page */
+    position: relative;
+    left: 50%;
+    transform: translateX(-40%);
+    
+    /* Adds a tiny bit of padding so the text never touches the edge of smaller screens */
+    padding: 0 20px; 
+    box-sizing: border-box;
+}
+
+/* =======================================================
+   2. IMPOSSIBLE LIST: OMAR'S EXACT HANGING LAYOUT
+   ======================================================= */
+.impossible-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 30px !important;
+    margin-bottom: 20px !important;
+    
+    /* Locks the grid to the EXACT same central column as the intro text */
+    width: 100% !important;
+    max-width: 780px !important; 
+    margin-left: auto !important;
+    margin-right: auto !important;
+    
+    position: static !important;
+    transform: none !important;
+}
+
+/* The row container */
+.impossible-row {
+    position: relative !important; /* This is the secret that lets the title hang outside */
+    display: block !important; 
+    width: 100% !important;
+}
+
+/* Category Title: Forced into the left margin! */
+.category-title {
+    position: absolute !important;
+    right: 100% !important; /* Pushes it completely outside the left edge of the pills */
+    margin-right: 30px !important; /* Space between the title and the pills */
+    top: 1px !important; /* Aligns vertically with the first pill */
+    width: 150px !important;
+    text-align: right !important; /* Keeps the text close to the pills */
+    
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 0.9rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 1.5px !important;
+    color: #444444 !important;
+    text-transform: uppercase !important;
+}
+
+.category-goals {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important; 
+    width: 100% !important;
+}
+
+/* =======================================================
+   3. THE PILLS: FORCED LEFT ALIGNMENT
+   ======================================================= */
+/* =======================================================
+   3. THE PILLS: FORCED LEFT ALIGNMENT (SMALLER BOXES)
+   ======================================================= */
+.goal-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important; 
+    border: 1.5px solid #e8e8e8 !important;
+    border-radius: 6px !important; /* Slightly smaller curve to match the smaller box */
+    
+    /* THE FIX: Reduced padding from 12px to 8px top/bottom */
+    padding: 2px 4px !important; 
+    
+    background-color: #ffffff !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+/* Indents sub-goals nicely underneath */
+.sub-goal {
+    margin-left: 30px !important;
+    width: calc(100% - 30px) !important;
+}
+
+.status-icon {
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50% !important;
+    margin-right: 15px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+}
+
+/* Forces the text inside the pill to stay left, ignoring any ghost CSS centering it */
+.goal-text {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 1rem !important;
+    color: #333333 !important;
+    flex-grow: 1 !important;
+    text-align: left !important; 
+    font-weight: 400 !important;
+    margin: 0 !important; 
+}
+/* =======================================================
+   MISSING CHECKBOX STYLES (ADD TO BOTTOM)
+   ======================================================= */
+
+/* Unfinished Goals (The Empty Circle) */
+.status-icon.empty {
+    border: 1.5px solid #777777 !important;
+    background: transparent !important;
+}
+
+/* Completed Goals (The Blue Checkmark) */
+.status-icon.done {
+    background-color: #3b82f6 !important; 
+    border: 1.5px solid #3b82f6 !important;
+    color: white !important;
+    font-size: 13px !important;
+    font-weight: bold !important;
+}
+
+.status-icon.done::after {
+    content: "✓" !important;
+}
+
+/* Push the dates (like "July 2022") all the way to the right edge */
+.goal-meta {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 1rem !important;
+    color: #565656 !important;
+    margin-left: auto !important; /* The magic command to push it right */
+    padding-left: 15px !important;
+    white-space: nowrap !important;
+}
+
+
+/* =======================================================
+   PHOTOGRAPHY PAGE - BASE STYLES
+   ======================================================= */
+
+body.Photography-page .work-container {
+    max-width: 800px; 
+    margin: 0 auto;
+    padding: 0px 20px;
+}
+
+body.Photography-page .work-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* 1. Force the text to sit in the exact center of the page */
+/* 1. Ensure the text stays neatly aligned to the left */
+body.Photography-page .work-header {
+    text-align: left !important; 
+    width: 80% !important;
+    margin-bottom: 10px !important;
+    display: block !important;
+}
+
+/* 2. The perfectly shifted image */
+body.Photography-page .hobbies-hero-img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 700px !important; 
+    height: 400px !important; 
+    object-fit: cover !important;
+    object-position: center 85% !important; 
+    
+    /* THE FIX: Removes auto-centering and pushes the left edge precisely inward. 
+       55px is roughly the width of the word "Where ". */
+    margin: 0 0 0px -240px !important; 
+    
+    border-radius: 12px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* =======================================================
+   PHOTOGRAPHY PAGE - PORTFOLIO LAYOUT
+   ======================================================= */
+
+body.Photography-page .photo-intro {
+    width: calc(200% - 90px) !important;
+    max-width: 700px !important; /* Exact same width as the picture */
+    margin: 20px 0 40px -40px !important; /* 55px pushes it exactly under the picture's left edge */
+    
+    font-size: 1.1rem;
+    line-height: 1.4;
+    color: #191919;
+    text-align: justify !important; /* Forces the right edge to end exactly with the picture */
+}
+
+body.Photography-page .portfolio-title{text-align: left !important; /* Kills the centering */
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 30px;
+    font-weight: 500;}
+body.Photography-page .portfolio-subtitle {
+    text-align: left !important; /* Kills the centering */
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #3c3c3c;
+}
+
+/* Make sure the section container itself isn't auto-centering */
+body.Photography-page .portfolio-section {
+    text-align: left !important;
+    margin-left: -180px !important; /* Aligns the whole block with your intro text */
+    max-width: 800px !important;
+}
+/* 3. Ensures the photo thumbnails stay neatly inside the lines */
+body.Photography-page .gallery-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important; /* Starts photos exactly at the left edge */
+    gap: 15px !important;
+    flex-wrap: wrap !important;
+    width: 200% !important;
+    max-width: 500px; 
+}
+
+
+
+/* The Location Button */
+body.Photography-page .location-btn {
+    background: #e4e4e4;
+    color: #150000;
+    border: none;
+    padding: 10px 90px;
+    border-radius: 40px;
+    font-size: 1.07rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+    cursor: default; /* Change to 'pointer' if you want it to be clickable later */
+}
+
+/* The Row of Images */
+/* 1. Force the row to stay on one line and allow horizontal scrolling */
+body.Photography-page .gallery-row {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 15px !important;
+    width: 100% !important; 
+    
+    /* THE FIX: nowrap forces everything onto a single line */
+    flex-wrap: nowrap !important; 
+    
+    /* Adds a neat horizontal scrollbar if the pictures exceed the 600px width */
+    overflow-x: auto !important; 
+    padding-bottom: 15px !important; /* Breathing room for the scrollbar */
+    margin-bottom: 40px !important;
+}
+
+/* 2. Prevent the pictures from shrinking into tiny slivers to fit the box */
+body.Photography-page .gallery-thumb {
+    height: 160px !important;
+    width: auto !important;
+    max-width: 200px !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
+    flex-shrink: 0 !important; /* THE FIX: Forces the image to keep its size */
+}
+
+/* 3. Prevent the "+" button from shrinking */
+body.Photography-page .see-more-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 160px !important;
+    width: 100px !important;
+    background: #f4f4f4 !important;
+    color: #666 !important;
+    font-size: 2rem !important;
+    text-decoration: none !important;
+    border-radius: 8px !important;
+    border: 1px solid #ddd !important;
+    transition: all 0.2s ease !important;
+    flex-shrink: 0 !important; /* THE FIX: Forces the button to keep its size */
+}
+
+body.Photography-page .see-more-btn:hover {
+    background: #e0e0e0;
+    color: #111;
+}
+
+/* =======================================================
+   RESPONSIVE DESIGN (ALL MEDIA QUERIES)
+   ======================================================= */
+
+/* --- 1. TABLET & SMALL DESKTOP (Max 900px) --- */
+/* --- 1. TABLETS & PHONES (Max 900px) - THE BULLETPROOF RESET --- */
+@media (max-width: 900px) {
+    
+    /* 1. Transform Sidebar into Bottom Navigation Bar */
+    .left-icon-bar, .side-nav {
+        display: flex !important;
+        position: fixed !important;
+        top: auto !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important; /* Changed from vw to % to prevent scrollbars */
+        height: 65px !important;
+        flex-direction: row !important;
+        justify-content: space-around !important;
+        align-items: center !important;
+        border-right: none !important;
+        border-top: 1px solid #eaeaea !important;
+        background-color: #ffffff !important;
+        z-index: 9999 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* 2. Lock the Screen to kill Horizontal Scrolling */
+    html, body {
+        overflow-x: hidden !important; 
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important; 
+        padding: 0 !important;
+    }
+    
+    body {
+        padding-bottom: 80px !important; /* Space for the bottom nav */
+    }
+
+    /* 3. Nuke EVERY possible wrapper's desktop margin */
+    /* (This ensures no matter what you named your main container, it gets fixed) */
+    main, .main-content, #main, #content, .content, .container, .page-wrapper, .wrapper, .impossible-container {
+        margin: 0 !important; 
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        border: none !important; 
+        transform: none !important;
+        position: static !important;
+    }
+
+    /* 4. Kill the Desktop "Breakout" Centering Tricks */
+    .impossible-grid, .impossible-intro, .impossible-hero-img {
+        width: 100% !important;
+        max-width: 100% !important;
+        position: static !important; 
+        transform: none !important; /* Stops it from pulling to the left/right */
+        left: auto !important; 
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 5. Clean up the Impossible List for Mobile */
+    .impossible-row {
+        display: flex !important;
+        flex-direction: column !important; 
+        gap: 10px !important;
+        width: 100% !important;
+        margin: 0 0 25px 0 !important;
+        box-sizing: border-box !important;
+    }
+    
+    .category-title {
+        position: static !important; 
+        width: 100% !important;
+        text-align: left !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .goal-item {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Ensure long dates or text don't break the boxes */
+    .goal-text {
+        white-space: normal !important;
+        word-wrap: break-word !important;
+    }
+
+    /* Other standard fixes you already had */
+    .about-page .work-header { margin: 0 0 20px 0 !important; }
+    .about-section, .about-section.align-tags, .countries-row, .edc-row {
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+    .about-section .section-label, .align-tags .section-label, .countries-row .section-label, .edc-row .section-label {
+        width: 100% !important;
+        text-align: left !important; 
+        margin-top: 0 !important;
+    }
+    .edc-cards-grid { justify-content: center !important; }
+
+    /* =======================================================
+       WORK PAGE & HOME PAGE MOBILE FIXES 
+       ======================================================= */
+    
+    /* 1. Universal Section Label Fix (Fixes Experience, Projects, Skills floating) */
+    .section-label {
+        position: static !important; 
+        width: 100% !important;
+        text-align: left !important;
+        margin: 0 0 15px 0 !important;
+        display: block !important;
+    }
+
+    /* 2. Work Page: Stack the Experience & Education rows cleanly */
+    .experience-item, .education-item {
+        display: flex !important;
+        flex-direction: column !important; 
+        align-items: flex-start !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+    
+    /* Removes the weird desktop indent for dates */
+    .job-dates, .education-dates {
+        margin-left: 0 !important; 
+        text-align: left !important;
+        width: 100% !important;
+    }
+
+/* =======================================================
+       THE ULTIMATE CONTACT FORM STRETCH
+       ======================================================= */
+    
+    /* 1. Force the invisible wrappers to expand */
+    .contact-section,
+    .contact-section form,
+    .contact-actions,
+    .contact-form,
+    .form-row,
+    .button-group {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important; /* The absolute enforcer */
+        padding: 0 !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 2. Force the buttons and inputs to expand with them */
+    .contact-section a,
+    .contact-section button,
+    .contact-section input,
+    .contact-section textarea,
+    .submit-btn {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important; /* Ignores any previous desktop width limits */
+        box-sizing: border-box !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 12px !important;
+    }
+
+    /* 4. Home Page: Timeline / Updates Enhancement */
+    .updates-section, .timeline-container {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+
+    .timeline-item {
+        display: flex !important;
+        flex-direction: column !important; /* Stacks date on top of text */
+        align-items: flex-start !important;
+        gap: 6px !important;
+        width: 100% !important;
+        margin-bottom: 25px !important;
+    }
+
+    .timeline-item .date {
+        width: 100% !important;
+        text-align: left !important;
+        font-weight: 600 !important;
+        margin: 0 !important;
+    }
+    /* =======================================================
+       WORK PAGE ONLY: BULLETPROOF CONTACT FORM 
+       ======================================================= */
+       
+    /* 1. Force the main container to stretch */
+    #work-specific-contact {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 20px !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 2. Put "Hire Me" and "Coffee Chat" side-by-side */
+    #work-specific-contact .contact-actions {
+        display: flex !important;
+        flex-direction: row !important; 
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 12px !important;
+        margin-bottom: 20px !important;
+        box-sizing: border-box !important;
+    }
+
+    #work-specific-contact .contact-actions a,
+    #work-specific-contact .contact-actions button {
+        flex: 1 !important; /* Shares the 50/50 space */
+        width: 80% !important;
+        max-width: 80% !important; 
+        margin: 0 !important;
+        text-align: center !important;
+    }
+
+    /* 3. Stretch the input boxes and Send button */
+    #work-specific-contact .contact-form,
+    #work-specific-contact form,
+    #work-specific-contact .form-row {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 12px !important;
+        box-sizing: border-box !important;
+    }
+
+    #work-specific-contact input,
+    #work-specific-contact textarea,
+    #work-specific-contact .submit-btn,
+    #work-specific-contact button[type="submit"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important; 
+        box-sizing: border-box !important;
+        margin: 0 !important;
+    }
+   body.Reading-page img:first-of-type,
+    body.Reading-page .hero-image-wrapper,
+    body.Reading-page .intro-image {
+        width: 100% !important;
+        max-width: 100% !important; /* Shrinks the image so it doesn't touch the edges */
+        margin: 0 auto 20px auto !important; /* Centers it perfectly */
+        display: block !important;
+        position: static !important;
+        transform: none !important; /* Kills any desktop breakout tricks */
+        border-radius: 12px !important; /* Optional: rounds the corners nicely */
+    }
+    
+    body.Photography-page .work-header {
+        width: 100% !important;
+        margin-bottom: 15px !important;
+    }
+
+    body.Photography-page .hobbies-hero-img {
+        max-width: 100% !important;
+        height: 220px !important; /* Scaled down vertical crop window */
+        
+        /* THE CRITICAL RESET: Removes your -240px desktop margin so it fits the screen */
+        margin: 0 0 20px -80px !important; 
+        
+        /* Pinned to the right to ensure the camera doesn't get chopped off on narrow screens */
+        object-position: right 85% !important; 
+    }
+
+    /* 2. Reset the Intro Text */
+    body.Photography-page .photo-intro {
+        /* Overrides your desktop 200% width and -40px left margin */
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 0 35px 0 !important; 
+        
+        font-size: 1rem !important;
+        text-align: left !important; /* Left-align is much easier to read on narrow phone screens */
+    }
+
+    /* 3. Reset the Portfolio Wrapper */
+    body.Photography-page .portfolio-section {
+        max-width: 100% !important;
+        
+        /* THE CRITICAL RESET: Removes your -180px desktop margin */
+        margin-left: 0 !important; 
+    }
+
+    /* 4. Smooth Horizontal Scrolling for Galleries */
+    body.Photography-page .gallery-row {
+        /* Overrides your desktop 200% width */
+        width: 100% !important; 
+        max-width: 100% !important;
+        
+        /* Adds momentum-based smooth scrolling for iPhones/touchscreens */
+        -webkit-overflow-scrolling: touch !important; 
+    }
+
+    /* 5. Scale down the thumbnails slightly for mobile */
+    body.Photography-page .gallery-thumb {
+        height: 140px !important; /* Dropped from 160px for a better mobile ratio */
+    }
+
+    body.Photography-page .see-more-btn {
+        height: 140px !important; /* Matches the new thumbnail height */
+        width: 85px !important; /* Slightly thinner button */
+        font-size: 1.5rem !important;
+    }
+}
+/* --- 2. MOBILE & LARGE PHONES (Max 850px) --- */
+@media (max-width: 850px) {
+    .hero {
+        flex-direction: column-reverse;
+        margin-bottom: 60px;
+        gap: 24px;
+    }
+    .hero-text {
+        text-align: center;
+    }
+    .subtitle, .social-links {
+        justify-content: center;
+    }
+    .hero-image-wrapper {
+        flex: none;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    .hero-img {
+        height: 380px;
+    }
+    h1 {
+        font-size: 2.4rem;
+    }
+    .timeline-item {
+        flex-direction: column;
+        gap: 6px;
+    }
+    .timeline-item:hover {
+        background-color: transparent; 
+    }
+    .date {
+        flex: none;
+    }
+}
+
+/* --- 4. SMALL PHONES (Max 650px) --- */
+@media (max-width: 650px) {
+    .work-section, .work-bio-section {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .section-label {
+        width: 100%;
+        padding-top: 0;
+    }
+    .experience-item {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .job-dates {
+        margin-left: 58px; 
+        text-align: left;
+    }
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    .contact-actions, .form-row {
+        flex-direction: column;
+    }
+}
+
+/* --- 5. EXTRA SMALL (Max 600px) --- */
+@media (max-width: 600px) {
+    .contact-section {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .input-row, .button-group {
+        flex-direction: column;
+    }
+    
+}
