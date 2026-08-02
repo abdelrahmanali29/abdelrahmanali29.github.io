@@ -7,6 +7,8 @@
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
 </head>
+
+<!-- body of about page -->
 <body class="about-page">
 
     <!-- Left Navigation Sidebar -->
@@ -33,7 +35,7 @@
 
     <!-- Main Content Container -->
     <div class="work-container">
-        <!-- Clock Display Header -->
+        <!-- Clock -->
         <header class="clock-display">
             <span id="live-clock">6:40 PM</span>
         </header>
@@ -44,24 +46,19 @@
             <p class="work-subtitle">welcome to my home on the internet</p>
         </header>
 
-        <!-- Intro Section (Matches Omar's Layout) -->
+        <!-- Intro Section -->
         <section class="about-section fade-in">
             <div class="section-label">INTRO</div>
             
             <div class="section-content">
-                <!-- Hero Image -->
-                <!-- Add a cool landscape photo of yourself and name it about-photo.jpg -->
+                <!-- Portrait Image Card -->
                 <img src="about.jpeg" class="about-hero-img">
-
+                <!-- about me -->
                 <div class="about-text">
                     <p>Hi there 👋 I'm Abdelrahman!</p>
-                    
                     <p>I was born and raised in Kuwait and moved to Egypt in 2018. I started my undergraduate studies in 2022 and am currently a senior studying computer engineering at MSA University. Looking ahead, I am preparing for my final-year graduation project and planning to pursue a Master's degree in Software Engineering in Germany.</p>
-                    
                     <p>While I love my academic studies and the projects I work on, what gives me life is everything I do away from the keyboard. I spend most of my time exploring new ideas, places, music, and literally everything that needs to be discovered. I try to engage in new creative activities and challenges, like video creation and photography.</p>
-                
                     <p>I'd be delighted if you checked out my <a href="https://www.tiktok.com/@_theabdelrahman" target="_blank" rel="noopener noreferrer">TikTok</a>, viewed the <a href="photography.html">Pictures</a> I take, looked at my <a href="reading.html">Readings</a>, or explored my <a href="hobbies.html">Impossible-List</a></p>
-
                 </div>
             </div>
         </section>
@@ -99,6 +96,7 @@
             <div class="section-label">YES</div>
             
             <div class="section-content tags-container">
+                <!-- donation link to palestine -->
                 <a href="https://irusa.org/middle-east/palestine/" target="_blank" rel="noopener noreferrer" class="tag-pill tag-green" style="text-decoration: none;">Free Palestine 🇵🇸</a>
                 <span class="tag-pill tag-green">Vintage Tech</span>
                 <span class="tag-pill tag-green">Critical Thinking</span>
@@ -141,7 +139,6 @@
             </div>
         </section>
 
-        <!-- COUNTRIES VISITED Section -->
        <!-- COUNTRIES VISITED Section -->
         <section class="about-section align-tags countries-row">
             <div class="section-label">COUNTRIES VISITED</div>
@@ -155,7 +152,6 @@
             </div>
         </section>
 
-        <!-- EDC Section -->
         <!-- EDC Section -->
         <section class="about-section edc-row">
             <div class="section-label">EDC</div>
@@ -181,43 +177,42 @@
         </section>
 
         <div class="contact-section">
-  <!-- Left side label -->
-  <div class="contact-label">
-    LET'S CONNECT
-  </div>
 
-  <!-- Right side content -->
-  <div class="contact-content">
+        <!-- Let's Connect section -->
+        <div class="contact-label"> LET'S CONNECT
+        </div>
+
+        <div class="contact-content">
     
-    <!-- Top Buttons -->
-    <div class="button-group">
-      <!-- Replace with your actual cal.com link -->
-      <a href="https://cal.eu/abdelrahmanali/coffeechat" target="_blank" class="pill-btn">Coffee Chat ☕</a>
-    </div>
+        <div class="button-group">
+        <!-- Coffee Chat (links to my Cal.com page) -->
+            <a href="https://cal.eu/abdelrahmanali/coffeechat" target="_blank" class="pill-btn">Coffee Chat ☕</a>
+        </div>
     
-    <!-- Divider -->
-    <div class="divider">
-      <span>or</span>
-    </div>
-    
-    <!-- Contact Form (Powered by Netlify) -->
-    <form class="contact-form" action="https://formspree.io/f/xrendryr" method="POST">
-                    <div class="form-row">
-                        <input type="text" name="name" placeholder="Your name" required>
-                        <input type="email" name="email" placeholder="Your email" required>
-                    </div>
-                    <textarea name="message" placeholder="I actually look at these. Please feel free to type your message here and I'll get back to you asap :)" required></textarea>
-                    <button type="submit" class="submit-btn">Send</button>
-                </form>
+        <div class="divider">
+            <span>or</span>
+        </div>
+
+        <!-- Email Form -->              
+        <!-- links to formspree.io -->
+        <form class="contact-form" action="https://formspree.io/f/xrendryr" method="POST">
+            <div class="form-row">
+                <input type="text" name="name" placeholder="Your name" required>
+                <input type="email" name="email" placeholder="Your email" required>
+            </div>
+            <textarea name="message" placeholder="I actually look at these. Please feel free to type your message here and I'll get back to you asap :)" required></textarea>
+            <button type="submit" class="submit-btn">Send</button>
+        </form>
 
   </div>
 </div>
-<footer class="site-footer">
+
+        <!-- Footer -->
+    <footer class="site-footer">
             <p>&copy; 2026 — Abdelrahman Ali</p>
         </footer>
     </div>
 
-    <!-- Make sure your script file is linked for the live clock! -->
     <script src="script.js"></script>
 </body>
 </html>
