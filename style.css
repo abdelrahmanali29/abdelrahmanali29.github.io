@@ -237,9 +237,9 @@ a.timeline-item {
   display: inline-block;
   margin: 15px 0 10px 0;
   padding: 8px 18px;
-  background-color: #111;
+  background-color: #efeded;
   color: #fff;
-  border-radius: 4px;
+  border-radius: 100px;
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
@@ -248,7 +248,7 @@ a.timeline-item {
 }
 
 .resume-button:hover {
-  background-color: #333;
+  background-color: #542727;
   transform: translateY(-1px);
 }
 
