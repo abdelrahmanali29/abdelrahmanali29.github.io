@@ -13,7 +13,6 @@ function updateClock() {
     
     const timeString = `${hours}:${minutes} ${period}`;
     
-    // If it's the first load, run the decrypt scramble effect
     if (!window.clockScrambled) {
         window.clockScrambled = true;
         let iteration = 0;
